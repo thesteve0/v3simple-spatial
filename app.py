@@ -8,7 +8,7 @@ import os
 
 @route('/')
 def index():
-	return "<h1> hello OpenShift Ninja without DB</h1>"
+	return "<h1> Steve is the best instructor EVER!</h1>"
 
 #@route('/db')
 #def dbexample():
