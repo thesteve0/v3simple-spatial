@@ -16,9 +16,9 @@ def dbexample():
 	print(os.environ.get('POSTGRESQL_USER'))
 	print("After Env")
 	try:
-		conn = psycopg2.connect(database='db', user=os.environ.get('POSTGRESQL_USER'), host=os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'), password=os.environ.get('POSTGRESQL_PASSWORD'))
+		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'), host=os.environ.get('PG_SLAVE_RC_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
 	except:
-		print( os.environ.get('POSTGRESQL_USER') + "  " + os.environ.get('POSTGRESQL_92_CENTOS7_SERVICE_HOST'))
+		print(os.environ.get('PG_USER')	+ "  " + os.environ.get('PG_SLAVE_RC_SERVICE_HOST'))
 	
 	cur = conn.cursor()
 	cur.execute("""SELECT * from pg_user""")
