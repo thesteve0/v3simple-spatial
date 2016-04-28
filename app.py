@@ -26,7 +26,7 @@ def dbexample():
 	rows = cur.fetchall()
 	result_string = "<h2>Here are your results: </h2>"
 	for row in rows:
-		result_string += "<h3>" + row[0] + "</h3>"
+		result_string += "<h3>" + str(row[0]) + "</h3>"
 
 	return  result_string
 
