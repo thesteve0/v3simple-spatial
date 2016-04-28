@@ -21,7 +21,7 @@ def dbexample():
 		print(os.environ.get('PG_USER')	+ "  " + os.environ.get('PG_SLAVE_RC_SERVICE_HOST'))
 	
 	cur = conn.cursor()
-	cur.execute("""SELECT * from pg_user""")
+	cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints limit 5""")
 	
 	rows = cur.fetchall()
 	result_string = "<h2>Here are your results: </h2>"
