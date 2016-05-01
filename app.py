@@ -24,8 +24,10 @@ def dbexample():
 		print(os.environ.get('PG_USER')	+ "  " + os.environ.get('PG_SLAVE_RC_SERVICE_HOST'))
 	
 	cur = conn.cursor()
-	cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints limit 10""")
-	
+	#cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints limit 10""")
+	cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints ORDER by parkid DESC LIMIT 10""")
+
+
 	rows = cur.fetchall()
 	result_string = "<h2>Here are your results: </h2>"
 	for row in rows:
@@ -54,16 +56,14 @@ def dbpost():
 
 	sql_string = """insert into parkpoints(name, the_geom) values ('""" + name + """', ST_GeomFromText('POINT("""
 	sql_string = sql_string + str(lon) + " " + str(lat) + ")', 4326));"
-	geom = """ST_GeomFromText('POINT(""" + str(lon) + " " + str(lat) + ")', 4326));"
-	sql_insert = """insert into parkpoints(name, the_geom) VALUES (%s, %s)"""
-	#here comes the insert srid = 4326
+
 	cur = conn.cursor()
+	#I know not this is not good form but I couldn't get it to work with the SRID stuff - probably just being lazy
 	cur.execute(sql_string)
 
 	conn.commit()
 
-	#now let's get back our data
-
+	#now let's get back our data we just put in
 	cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints ORDER by parkid DESC LIMIT 10""")
 
 	rows = cur.fetchall()
