@@ -1,7 +1,7 @@
 __author__ = 'spousty'
 
 import psycopg2
-from bottle import route, run, get, DEBUG
+from bottle import route, run, get, post, DEBUG
 import os
 import random
 from random_words import RandomWords
