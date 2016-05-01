@@ -58,7 +58,7 @@ def dbpost():
 	sql_insert = """insert into parkpoints(name, the_geom) VALUES (%s, %s)"""
 	#here comes the insert srid = 4326
 	cur = conn.cursor()
-	cur.execute(sql_insert, (name, geom))
+	cur.execute(sql_string)
 
 	conn.commit()
 
