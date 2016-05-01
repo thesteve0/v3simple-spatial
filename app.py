@@ -64,7 +64,7 @@ def dbpost():
 
 	#now let's get back our data
 
-	cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints oder by parkid DESC limit 10""")
+	cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints ORDER by parkid DESC LIMIT 10""")
 
 	rows = cur.fetchall()
 	result_string = "<h2>Here are your results: </h2>"
