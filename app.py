@@ -19,9 +19,9 @@ def dbexample():
 	print(os.environ.get('POSTGRESQL_USER'))
 	print("After Env")
 	try:
-		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'), host=os.environ.get('PG_SLAVE_RC_DC_SERVICE_HOST'), password=os.environ.get('PG_ROOT_PASSWORD'))
+		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user'postgres', host=os.environ.get('REPLICA_SERVICE_HOST'), password=os.environ.get('PG_ROOT_PASSWORD'))
 	except:
-		print(os.environ.get('PG_USER')	+ "  " + os.environ.get('PG_SLAVE_RC_DC_SERVICE_HOST'))
+		print( os.environ.get(REPLICA_SERVICE_HOST'))
 	
 	cur = conn.cursor()
 	#cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints limit 10""")
@@ -43,9 +43,9 @@ def dbpost():
 
 	#changes these to the master
 	try:
-		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'), host=os.environ.get('PG_MASTER_RC_DC_SERVICE_HOST'), password=os.environ.get('PG_ROOT_PASSWORD'))
+		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user='postgres', host=os.environ.get('PGMASTER_SERVICE_HOST'), password=os.environ.get('PG_ROOT_PASSWORD'))
 	except:
-		print(os.environ.get('PG_USER')	+ "  " + os.environ.get('PG_MASTER_RC_DC_SERVICE_HOST'))
+		print(os.environ.get('PGMASTER_SERVICE_HOST'))
 
 	#Need to generate some data - no need for ID
 	#NEED a name and a lat and long
