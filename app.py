@@ -16,10 +16,9 @@ def index():
 # since this is a read only talk to the replicas
 @get('/db')
 def dbexample():
-	print(os.environ.get('POSTGRESQL_USER'))
-	print("After Env")
+PG_USER=postgres
 	try:
-		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user'postgres', host=os.environ.get('REPLICA_SERVICE_HOST'), password=os.environ.get('PG_ROOT_PASSWORD'))
+		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'), host=os.environ.get('REPLICA_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
 	except:
 		print( os.environ.get(REPLICA_SERVICE_HOST'))
 	
@@ -43,12 +42,11 @@ def dbpost():
 
 	#changes these to the master
 	try:
-		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user='postgres', host=os.environ.get('PGMASTER_SERVICE_HOST'), password=os.environ.get('PG_ROOT_PASSWORD'))
+		conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'), host=os.environ.get('PGMASTER_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
 	except:
 		print(os.environ.get('PGMASTER_SERVICE_HOST'))
 
-	#Need to generate some data - no need for ID
-	#NEED a name and a lat and long
+	#generate a random lat, lon, and place name
 	lat = random.uniform(-90,90)
 	lon = random.uniform(-180,180)
 	rw = RandomWords()
