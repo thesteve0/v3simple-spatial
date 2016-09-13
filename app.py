@@ -41,9 +41,9 @@ def dbpost():
     # changes these to the master
     try:
         conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'),
-                                host=os.environ.get('PGMASTER_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
+                                host=os.environ.get('MASTER_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
     except:
-        print(os.environ.get('PGMASTER_SERVICE_HOST'))
+        print(os.environ.get('MASTER_SERVICE_HOST'))
 
     # generate a random lat, lon, and place name
     lat = random.uniform(-90, 90)
